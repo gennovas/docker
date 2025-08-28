@@ -60,7 +60,7 @@ wsl --import Ubuntu D:\WSL\Ubuntu D:\WSL\Ubuntu.tar --version 2
 D:\WSL\Ubuntu\
 ```
 ---
-## ตัวอย่างการติดตั้ง SQL Server 2022 บน Docker (Linux)
+## ติดตั้ง SQL Server 2022 บน Docker (Linux)
 ```bash
 docker pull mcr.microsoft.com/mssql/server:2022-latest
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
@@ -85,3 +85,9 @@ docker restart TTC-Container
 ```sql
 SELECT @@SERVERNAME;
 ```
+---
+## ติดตั้ง IIS บน Docker
+1. เปิดใช้ Windows Container
+Docker Desktop บน Windows สามารถสลับได้ 2 โหมด
+- Linux Containers (default)
+- Windows Containers
