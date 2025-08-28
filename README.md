@@ -104,3 +104,8 @@ docker run -d -p 8080:80 --name IIS-Container mcr.microsoft.com/windows/serverco
 - -d = run แบบ background
 - -p 8080:80 = map port 8080 ของ host → 80 ของ container
 - --name IIS-Container = ตั้งชื่อ container
+### 4. ทดสอบการทำงาน
+```arduino
+http://localhost:8080
+```
+จะเจอหน้า IIS default page ✅
