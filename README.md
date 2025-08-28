@@ -20,7 +20,7 @@ wsl --status
 2. ระหว่างขั้นตอนการติดตั้ง ให้เลือกตัวเลือกดังนี้:
    - ✅ **Use WSL2 instead of Hyper-V**  
    - ✅ **Enable integration with Ubuntu**
-   - 
+     
 ## 4. ย้าย Docker Data ไปที่ Drive D:
 คุณสามารถเลือกได้ 2 วิธี ขึ้นอยู่กับว่าต้องการย้ายเฉพาะ **Docker Data** หรือย้ายทั้ง **WSL Distro (Ubuntu)** ไปที่ D:
 
