@@ -1,1 +1,61 @@
-# docker
+# 🚀 ติดตั้ง Docker + WSL2 บน Windows 11 และย้ายไป Drive D:
+
+## 1. เปิดฟีเจอร์ที่จำเป็น
+เปิด PowerShell (Run as Administrator) แล้วรัน:
+```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
+Restart เครื่อง 1 ครั้ง
+## 2. ติดตั้ง Linux Distro (Ubuntu)
+```powershell
+wsl --install -d Ubuntu
+```
+ตรวจสอบว่าเป็น WSL2:
+```powershell
+wsl --status
+```
+## 3. ติดตั้ง Docker Desktop
+1. ดาวน์โหลด [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
+2. ระหว่างขั้นตอนการติดตั้ง ให้เลือกตัวเลือกดังนี้:
+   - ✅ **Use WSL2 instead of Hyper-V**  
+   - ✅ **Enable integration with Ubuntu**
+   - 
+## 4. ย้าย Docker Data ไปที่ Drive D:
+คุณสามารถเลือกได้ 2 วิธี ขึ้นอยู่กับว่าต้องการย้ายเฉพาะ **Docker Data** หรือย้ายทั้ง **WSL Distro (Ubuntu)** ไปที่ D:
+
+---
+### วิธี A: เปลี่ยน `data-root` ของ Docker
+1. **ปิด Docker Desktop**
+2. เปิดไฟล์ config ที่ตำแหน่ง:  %AppData%\Docker\settings.json
+3. เพิ่มหรือแก้ไขบรรทัด:
+```json
+{
+  "data-root": "D:\\DockerData"
+}
+```
+4. สร้างโฟลเดอร์ใหม่:
+```makefile
+D:\DockerData
+```
+5. เปิด Docker Desktop ใหม่
+→ ตอนนี้ Docker จะเก็บ images, containers, volumes ที่ D:\DockerData
+
+### วิธี B: ย้าย WSL Distro (Ubuntu) ไปที่ D:
+ถ้าต้องการให้ทั้ง WSL ถูกย้ายไปที่ D: (รวม Docker data ด้วย)
+1. Export Ubuntu เดิม
+```powershell
+wsl --import Ubuntu D:\WSL\Ubuntu D:\WSL\Ubuntu.tar --version 2
+```
+2. ลบ Ubuntu เดิม
+```powershell
+wsl --unregister Ubuntu
+```
+3. Import ใหม่ไปที่ D:
+```powershell
+wsl --import Ubuntu D:\WSL\Ubuntu D:\WSL\Ubuntu.tar --version 2
+```
+4. ตอนนี้ไฟล์ rootfs (ext4.vhdx) จะถูกเก็บที่:
+```makefile
+D:\WSL\Ubuntu\
+```
