@@ -59,3 +59,29 @@ wsl --import Ubuntu D:\WSL\Ubuntu D:\WSL\Ubuntu.tar --version 2
 ```makefile
 D:\WSL\Ubuntu\
 ```
+---
+## ตัวอย่างการติดตั้ง SQL Server 2022 บน Docker (Linux)
+```bash
+docker pull mcr.microsoft.com/mssql/server:2022-latest
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
+   -p 1433:1433 --name TTC-SQLDB \
+   -d mcr.microsoft.com/mssql/server:2022-latest
+```
+เข้าไปใน SQL Server:
+```bash
+docker exec -it TTC-SQLDB /opt/mssql-tools18/bin/sqlcmd \
+   -S localhost -U SA -P "YourStrong!Passw0rd"
+```
+ตั้งค่า @@SERVERNAME:
+```sql
+EXEC sp_dropserver 'TTC-SQLDB', 'droplogins';
+EXEC sp_addserver 'TTC-SQLDB', 'local';
+```
+รีสตาร์ท container:
+```bash
+docker restart TTC-SQLDB
+```
+ตรวจสอบ:
+```sql
+SELECT @@SERVERNAME;
+```
