@@ -123,3 +123,5 @@ docker run -d -p 8080:80 --name IIS-Container `
   -v C:\MyWebsite:C:\inetpub\wwwroot `
   mcr.microsoft.com/windows/servercore/iis
 ```
+- IIS-Container คือ ชื่อ Container
+- mcr.microsoft.com/windows/servercore/iis คือ ชื่อ Image
