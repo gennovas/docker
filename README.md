@@ -87,7 +87,20 @@ SELECT @@SERVERNAME;
 ```
 ---
 ## ติดตั้ง IIS บน Docker
-1. เปิดใช้ Windows Container
+### 1. เปิดใช้ Windows Container
 Docker Desktop บน Windows สามารถสลับได้ 2 โหมด
 - Linux Containers (default)
 - Windows Containers
+เพราะ IIS รันได้เฉพาะ Windows → ต้องสลับไปที่ Switch to Windows Containers
+(คลิกขวาที่ไอคอน Docker Desktop → เลือก Switch to Windows Containers...)
+### 2. ดึง IIS Image จาก Microsoft
+```powershell
+docker pull mcr.microsoft.com/windows/servercore/iis
+```
+### 3. รัน Container พร้อม IIS
+```powershell
+docker run -d -p 8080:80 --name IIS-Container mcr.microsoft.com/windows/servercore/iis
+```
+- -d = run แบบ background
+- -p 8080:80 = map port 8080 ของ host → 80 ของ container
+- --name IIS-Container = ตั้งชื่อ container
