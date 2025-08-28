@@ -64,12 +64,12 @@ D:\WSL\Ubuntu\
 ```bash
 docker pull mcr.microsoft.com/mssql/server:2022-latest
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
-   -p 1433:1433 --name TTC-SQLDB-Container \
+   -p 1433:1433 --name TTC-Container \
    -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 เข้าไปใน SQL Server:
 ```bash
-docker exec -it TTC-SQLDB-Container /opt/mssql-tools18/bin/sqlcmd \
+docker exec -it TTC-Container /opt/mssql-tools18/bin/sqlcmd \
    -S localhost -U SA -P "YourStrong!Passw0rd"
 ```
 ตั้งค่า @@SERVERNAME:
@@ -79,7 +79,7 @@ EXEC sp_addserver 'TTC-SQLDB', 'local';
 ```
 รีสตาร์ท container:
 ```bash
-docker restart TTC-SQLDB-Container
+docker restart TTC-Container
 ```
 ตรวจสอบ:
 ```sql
