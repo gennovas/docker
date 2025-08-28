@@ -109,3 +109,17 @@ docker run -d -p 8080:80 --name IIS-Container mcr.microsoft.com/windows/serverco
 http://localhost:8080
 ```
 จะเจอหน้า IIS default page ✅
+### 5. เข้าไปแก้ไขไฟล์ใน IIS
+```powershell
+docker exec -it IIS-Container powershell
+```
+web root จะอยู่ที่:
+```makefile
+C:\inetpub\wwwroot
+```
+### 6. Map โฟลเดอร์จาก Host → Container (ถ้าอยากแก้ไฟล์นอก container)
+```powershell
+docker run -d -p 8080:80 --name IIS-Container `
+  -v C:\MyWebsite:C:\inetpub\wwwroot `
+  mcr.microsoft.com/windows/servercore/iis
+```
