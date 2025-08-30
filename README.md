@@ -3,6 +3,8 @@
 ## 1. เปิดฟีเจอร์ที่จำเป็น
 เปิด PowerShell (Run as Administrator) แล้วรัน:
 ```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Hyper-V-All /all /norestart
+dism.exe /online /enable-feature /featurename:Containers /all /norestart
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ```
