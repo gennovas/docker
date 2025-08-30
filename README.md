@@ -64,22 +64,30 @@ D:\WSL\Ubuntu\
 ```bash
 docker pull mcr.microsoft.com/mssql/server:2022-latest
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
-   -p 1433:1433 --name TTC-Container \
+   -p 1433:1433 --name MSSQL2022 \
    -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 เข้าไปใน SQL Server:
 ```bash
-docker exec -it TTC-Container /opt/mssql-tools18/bin/sqlcmd \
+docker exec -it MSSQL2022 /opt/mssql-tools18/bin/sqlcmd \
    -S localhost -U SA -P "YourStrong!Passw0rd"
 ```
+หรือ เข้าใช้งานด้วย SSMS
+1. Server Name = localhost
+2. Authentication = SQL Server Authentication
+3. Login = sa
+4. Password =
+5. Encryption = Mandatory
+6. Trust server certificate= true
+
 ตั้งค่า @@SERVERNAME:
 ```sql
 EXEC sp_dropserver @@SERVERNAME, 'droplogins';
-EXEC sp_addserver 'TTC-SQLDB', 'local';
+EXEC sp_addserver 'SERVERNAME', 'local';
 ```
 รีสตาร์ท container:
 ```bash
-docker restart TTC-Container
+docker restart MSSQL2022
 ```
 ตรวจสอบ:
 ```sql
