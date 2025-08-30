@@ -133,3 +133,17 @@ docker run -d -p 8080:80 --name IIS-Container `
 ```
 - IIS-Container คือ ชื่อ Container
 - mcr.microsoft.com/windows/servercore/iis คือ ชื่อ Image
+
+## 7. 🐳 Docker List Commands Cheat Sheet
+
+| Command                | Description                                |
+|-------------------------|--------------------------------------------|
+| `docker images`         | แสดง images ทั้งหมดที่อยู่ในเครื่อง       |
+| `docker ps`             | แสดง containers ที่กำลังรันอยู่            |
+| `docker ps -a`          | แสดง containers ทั้งหมด (รวมที่หยุดแล้ว)   |
+| `docker volume ls`      | แสดง volumes ทั้งหมด                       |
+| `docker network ls`     | แสดง networks ทั้งหมด                      |
+| `docker service ls`     | แสดง services (เฉพาะ Docker Swarm)         |
+| `docker context ls`     | แสดง contexts (multi-docker environment)   |
+| `docker buildx ls`      | แสดง builder instances (BuildKit)          |
+
