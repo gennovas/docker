@@ -24,42 +24,11 @@ wsl --status
    - ✅ **Enable integration with Ubuntu**
      
 ## 4. ย้าย Docker Data ไปที่ Drive D:
-คุณสามารถเลือกได้ 2 วิธี ขึ้นอยู่กับว่าต้องการย้ายเฉพาะ **Docker Data** หรือย้ายทั้ง **WSL Distro (Ubuntu)** ไปที่ D:
-
----
-### วิธี A: เปลี่ยน `data-root` ของ Docker
-1. **ปิด Docker Desktop**
-2. เปิดไฟล์ config ที่ตำแหน่ง:  %AppData%\Docker\settings.json
-3. เพิ่มหรือแก้ไขบรรทัด:
-```json
-{
-  "data-root": "D:\\DockerData"
-}
-```
-4. สร้างโฟลเดอร์ใหม่:
-```makefile
-D:\DockerData
-```
-5. เปิด Docker Desktop ใหม่
-→ ตอนนี้ Docker จะเก็บ images, containers, volumes ที่ D:\DockerData
-
-### วิธี B: ย้าย WSL Distro (Ubuntu) ไปที่ D:
-ถ้าต้องการให้ทั้ง WSL ถูกย้ายไปที่ D: (รวม Docker data ด้วย)
-1. Export Ubuntu เดิม
-```powershell
-wsl --import Ubuntu D:\WSL\Ubuntu D:\WSL\Ubuntu.tar --version 2
-```
-2. ลบ Ubuntu เดิม
-```powershell
+```bash
+wsl --list --verbose
+wsl --export Ubuntu D:\docker\ubuntu.tar
 wsl --unregister Ubuntu
-```
-3. Import ใหม่ไปที่ D:
-```powershell
-wsl --import Ubuntu D:\WSL\Ubuntu D:\WSL\Ubuntu.tar --version 2
-```
-4. ตอนนี้ไฟล์ rootfs (ext4.vhdx) จะถูกเก็บที่:
-```makefile
-D:\WSL\Ubuntu\
+wsl --import Ubuntu D:\docker\ubuntu D:\docker\ubuntu.tar --version 2
 ```
 ---
 ## ติดตั้ง SQL Server 2022 บน Docker (Linux)
