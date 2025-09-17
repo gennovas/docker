@@ -23,19 +23,22 @@ wsl --status
    - ✅ **Use WSL2 instead of Hyper-V**  
    - ✅ **Enable integration with Ubuntu**
      
-## 4. ย้าย Docker Data ไปที่ Drive D:
+## 4. ย้าย Unbuntu ไปที่ Drive D:
 ```bash
 wsl --list --verbose
 wsl --export Ubuntu D:\docker\ubuntu.tar
 wsl --unregister Ubuntu
 wsl --import Ubuntu D:\docker\ubuntu D:\docker\ubuntu.tar --version 2
-
-wsl --export docker-desktop-data D:\Docker\docker-desktop-data.tar
-wsl --unregister docker-desktop-data
-wsl --import docker-desktop-data D:\Docker\Docker D:\Docker\docker-desktop-data.tar --version 2
 ```
 ---
-## ติดตั้ง SQL Server 2022 บน Docker (Linux)
+## 5. กำหนด Disk Image Location
+- เข้า Docker Desktop
+- ไปที่ Settings -> Resources
+- เปลี่ยน Location ไปที่ D:\Docker\Images
+- กด Apply
+---
+
+## 6. ติดตั้ง SQL Server 2022 บน Docker (Linux)
 ```bash
 docker pull mcr.microsoft.com/mssql/server:2022-latest
 docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
