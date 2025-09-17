@@ -20,7 +20,8 @@ wsl --status
 ## 3. ติดตั้ง Docker Desktop
 1. ดาวน์โหลด [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/)
 2. ระหว่างขั้นตอนการติดตั้ง ให้เลือกตัวเลือกดังนี้:
-   - ✅ **Use WSL2 instead of Hyper-V**  
+   - ✅ **Use WSL2 instead of Hyper-V**
+   - ✅ **Enable Windows Integration**
    - ✅ **Enable integration with Ubuntu**
      
 ## 4. ย้าย Unbuntu ไปที่ Drive D:
@@ -41,14 +42,11 @@ wsl --import Ubuntu D:\docker\ubuntu D:\docker\ubuntu.tar --version 2
 ## 6. ติดตั้ง SQL Server 2022 บน Docker (Linux)
 ```bash
 docker pull mcr.microsoft.com/mssql/server:2022-latest
-docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" \
-   -p 1433:1433 --name MSSQL2022 \
-   -d mcr.microsoft.com/mssql/server:2022-latest
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourStrong!Passw0rd" -p 1433:1433 --name MSSQL2022 -d mcr.microsoft.com/mssql/server:2022-latest
 ```
 เข้าไปใน SQL Server:
 ```bash
-docker exec -it MSSQL2022 /opt/mssql-tools18/bin/sqlcmd \
-   -S localhost -U SA -P "YourStrong!Passw0rd"
+docker exec -it MSSQL2022 /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P "YourStrong!Passw0rd"
 ```
 หรือ เข้าใช้งานด้วย SSMS
 1. Server Name = localhost
