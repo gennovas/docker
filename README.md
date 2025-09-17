@@ -29,6 +29,10 @@ wsl --list --verbose
 wsl --export Ubuntu D:\docker\ubuntu.tar
 wsl --unregister Ubuntu
 wsl --import Ubuntu D:\docker\ubuntu D:\docker\ubuntu.tar --version 2
+
+wsl --export docker-desktop-data D:\Docker\docker-desktop-data.tar
+wsl --unregister docker-desktop-data
+wsl --import docker-desktop-data D:\Docker\Docker D:\Docker\docker-desktop-data.tar --version 2
 ```
 ---
 ## ติดตั้ง SQL Server 2022 บน Docker (Linux)
